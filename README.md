@@ -36,14 +36,14 @@ To get a local copy up and running follow these steps.
    ```sh
    cd usermicroservice
    ```
-3. Create a new database in MySQL called powerup
+3. Create a new database in MySQL called dbuser
 4. Update the database connection settings
    ```yml
    # src/main/resources/application-dev.yml
    spring:
       datasource:
           url: jdbc:mysql://localhost/dbuser
-          username: 123
+          username: root
           password: 1234
    ```
 5. After the tables are created execute src/main/resources/data.sql content to populate the database
