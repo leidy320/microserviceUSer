@@ -35,26 +35,26 @@ public class UserUseCase implements IUserServicePort {
         validateAge(user.getBirthDate());
     }
 
-    private void validateAge(Date date) throws ValidateUserException {
+    protected void validateAge(Date date) throws ValidateUserException {
         int age = new Date().getYear() - date.getYear() ;
         if(age< MAX_AGE) {
             throw new ValidateUserException("la persona es menor de edad, tiene que ser mayor de edad");
         }
     }
 
-    private void validateMail(String mail) throws ValidateUserException {
+    protected void validateMail(String mail) throws ValidateUserException {
         if(!mail.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
             throw new ValidateUserException("No es un email el valor ingresado");
         }
     }
 
-    private void validateDni(String dni) throws ValidateUserException {
+    protected void validateDni(String dni) throws ValidateUserException {
         if(dni.matches(".*[a-zA-Z]+.*")) {
             throw new ValidateUserException("El Campo documento de identidad solo acepta numeros");
         }
     }
 
-    private void validatePhone(String phone) throws ValidateUserException {
+    protected void validatePhone(String phone) throws ValidateUserException {
 
         if(phone.length() >= MAX_CHARACTER || phone.matches(".*[a-zA-Z]+.*")) {
             throw new ValidateUserException("El numero de telefono no debe superar los 13 caracteres, ni debe contener letras");

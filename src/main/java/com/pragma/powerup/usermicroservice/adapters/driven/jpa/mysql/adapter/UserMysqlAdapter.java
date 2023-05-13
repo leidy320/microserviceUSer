@@ -7,7 +7,6 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IUserEntityMapper;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IRoleRepository;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IUserRepository;
-import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.mapper.IUserResponseMapper;
 import com.pragma.powerup.usermicroservice.domain.model.User;
 import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
@@ -43,8 +42,6 @@ public class UserMysqlAdapter implements IUserPersistencePort {
     @Override
     public String getUserById(Long id) {
         UserEntity userEntity =  userRepository.findById(id).get();
-        System.out.println("mensajeeeeeeeeeee "+userEntity.getRole().getName().toString());
-
-     return userEntity.getRole().getName();
+        return userEntity.getRole().getName();
     }
 }
