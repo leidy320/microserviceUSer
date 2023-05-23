@@ -22,6 +22,11 @@ public class UserHandlerImpl implements IUserHandler {
     }
 
     @Override
+    public void saveEmploye(UserRequestDto userRequestDto) throws ValidateUserException {
+        userServicePort.saveEmploye(userRequestMapper.toUser(userRequestDto));
+    }
+
+    @Override
     public String getUserById(Long id) {
         return userServicePort.getUserById(id);
     }

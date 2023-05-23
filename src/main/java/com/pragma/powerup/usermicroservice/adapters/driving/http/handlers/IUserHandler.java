@@ -7,5 +7,6 @@ import com.pragma.powerup.usermicroservice.domain.model.User;
 
 public interface IUserHandler {
     void saveOwner(UserRequestDto personRequestDto) throws ValidateUserException;
+    void saveEmploye(UserRequestDto personRequestDto) throws ValidateUserException;
     String getUserById(Long id);
 }

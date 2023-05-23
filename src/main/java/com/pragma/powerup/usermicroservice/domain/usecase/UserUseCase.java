@@ -22,6 +22,11 @@ public class UserUseCase implements IUserServicePort {
         validateInfoToUser(user);
         userPersistencePort.saveOwner(user);
     }
+    @Override
+    public void saveEmploye(User user) throws ValidateUserException {
+        validateInfoToUser(user);
+        userPersistencePort.saveEmploye(user);
+    }
 
     @Override
     public String getUserById(Long id) {

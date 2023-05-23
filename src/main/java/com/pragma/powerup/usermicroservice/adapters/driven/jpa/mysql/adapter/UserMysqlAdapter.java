@@ -38,6 +38,23 @@ public class UserMysqlAdapter implements IUserPersistencePort {
         userRepository.save(userEntity);
 
     }
+    public void saveEmploye(User user) {
+        if (userRepository.findByDniNumber(user.getDniNumber()).isPresent()) {
+            throw new PersonAlreadyExistsException();
+        }
+
+        if (userRepository.existsByMail(user.getMail())){
+            throw new MailAlreadyExistsException();
+        }
+
+        RoleEntity role = roleRepository.getById(4l);
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        UserEntity userEntity = userEntityMapper.toEntity(user);
+        userEntity.setRole(role);
+        userRepository.save(userEntity);
+
+    }
 
     @Override
     public String getUserById(Long id) {
