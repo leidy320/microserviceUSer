@@ -8,6 +8,7 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IUs
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IRoleRepository;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IUserRepository;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.mapper.IUserResponseMapper;
+import com.pragma.powerup.usermicroservice.configuration.Constants;
 import com.pragma.powerup.usermicroservice.domain.model.User;
 import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
 import lombok.RequiredArgsConstructor;
@@ -22,16 +23,11 @@ public class UserMysqlAdapter implements IUserPersistencePort {
     private  final IUserResponseMapper userResponseMapper;
     @Override
     public void saveOwner(User user) {
-        if (userRepository.findByDniNumber(user.getDniNumber()).isPresent()) {
-            throw new PersonAlreadyExistsException();
-        }
 
-        if (userRepository.existsByMail(user.getMail())){
-            throw new MailAlreadyExistsException();
-        }
+        validationDniAlreadyExist(user);
+        validationMailAlreadyExist(user);
 
-        RoleEntity role = roleRepository.getById(3l);
-
+        RoleEntity role = roleRepository.getById(Constants.OWNER_ROLE_ID);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         UserEntity userEntity = userEntityMapper.toEntity(user);
         userEntity.setRole(role);
@@ -39,21 +35,28 @@ public class UserMysqlAdapter implements IUserPersistencePort {
 
     }
     public void saveEmploye(User user) {
-        if (userRepository.findByDniNumber(user.getDniNumber()).isPresent()) {
-            throw new PersonAlreadyExistsException();
-        }
 
-        if (userRepository.existsByMail(user.getMail())){
-            throw new MailAlreadyExistsException();
-        }
+        validationDniAlreadyExist(user);
+        validationMailAlreadyExist(user);
 
-        RoleEntity role = roleRepository.getById(4l);
-
+        RoleEntity role = roleRepository.getById(Constants.EMPLOYEE_ROLE_ID);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         UserEntity userEntity = userEntityMapper.toEntity(user);
         userEntity.setRole(role);
         userRepository.save(userEntity);
 
+    }
+
+    private void validationMailAlreadyExist(User user) {
+        if (userRepository.existsByMail(user.getMail())){
+            throw new MailAlreadyExistsException();
+        }
+    }
+
+    private void validationDniAlreadyExist(User user) {
+        if (userRepository.findByDniNumber(user.getDniNumber()).isPresent()) {
+            throw new PersonAlreadyExistsException();
+        }
     }
 
     @Override

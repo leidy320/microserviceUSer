@@ -40,6 +40,8 @@ public class UserUseCase implements IUserServicePort {
         validateAge(user.getBirthDate());
     }
 
+
+
     protected void validateAge(Date date) throws ValidateUserException {
         int age = new Date().getYear() - date.getYear() ;
         if(age< MAX_AGE) {

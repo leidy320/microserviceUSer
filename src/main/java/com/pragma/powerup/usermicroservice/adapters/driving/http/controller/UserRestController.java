@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.controller;
 
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.UserRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IUserHandler;
@@ -34,7 +35,7 @@ public class UserRestController {
     public ResponseEntity<Map<String, String>> saveOwner(@RequestBody UserRequestDto userRequestDto) throws ValidateUserException {
         userHandler.saveOwner(userRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.PERSON_CREATED_MESSAGE));
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.USER_CREATED_MESSAGE));
     }
 
     @GetMapping("/getUser/{id}")
@@ -43,9 +44,9 @@ public class UserRestController {
     }
 
     @PostMapping("/createEmploye")
-    public ResponseEntity<Map<String, String>> saveEmploye(@RequestBody UserRequestDto userRequestDto) throws ValidateUserException {
-        userHandler.saveEmploye(userRequestDto);
+    public ResponseEntity<Map<String, String>> saveEmploye(@RequestBody EmployeRequestDto employeRequestDto) throws ValidateUserException {
+        userHandler.saveEmploye(employeRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.PERSON_CREATED_MESSAGE));
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.USER_CREATED_MESSAGE));
     }
 }

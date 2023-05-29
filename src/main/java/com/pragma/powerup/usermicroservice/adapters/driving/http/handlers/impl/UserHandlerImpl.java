@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.impl;
 
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.UserRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IUserHandler;
@@ -22,8 +23,8 @@ public class UserHandlerImpl implements IUserHandler {
     }
 
     @Override
-    public void saveEmploye(UserRequestDto userRequestDto) throws ValidateUserException {
-        userServicePort.saveEmploye(userRequestMapper.toUser(userRequestDto));
+    public void saveEmploye(EmployeRequestDto employeRequestDto) throws ValidateUserException {
+        userServicePort.saveEmploye(userRequestMapper.toEmploye(employeRequestDto));
     }
 
     @Override

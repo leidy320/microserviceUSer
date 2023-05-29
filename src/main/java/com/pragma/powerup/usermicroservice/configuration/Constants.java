@@ -7,8 +7,9 @@ public class Constants {
     }
 
     public static final Long CLIENT_ROLE_ID = 1L;
-    public static final Long EMPLOYEE_ROLE_ID = 2L;
+    public static final Long EMPLOYEE_ROLE_ID = 4L;
     public static final Long PROVIDER_ROLE_ID = 3L;
+    public static final Long OWNER_ROLE_ID = 3L;
     public static final int MAX_PAGE_SIZE = 2;
     public static final String RESPONSE_MESSAGE_KEY = "message";
     public static final String PERSON_CREATED_MESSAGE = "Person created successfully";
@@ -30,4 +31,7 @@ public class Constants {
     public static final String SWAGGER_LICENSE_NAME_MESSAGE = "Apache 2.0";
     public static final String SWAGGER_LICENSE_URL_MESSAGE = "http://springdoc.org";
     public static final String SWAGGER_TERMS_OF_SERVICE_MESSAGE = "http://swagger.io/terms/";
+
+
+
 }
