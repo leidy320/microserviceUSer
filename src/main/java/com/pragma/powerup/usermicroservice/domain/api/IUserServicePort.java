@@ -8,5 +8,6 @@ public interface IUserServicePort {
     void saveOwner(User user) throws ValidateUserException;
     void saveEmploye(User user) throws ValidateUserException;
 
+    void saveCustomer(User user) throws ValidateUserException;
     String getUserById(Long id);
 }

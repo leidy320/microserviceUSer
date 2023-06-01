@@ -29,6 +29,12 @@ public class UserUseCase implements IUserServicePort {
     }
 
     @Override
+    public void saveCustomer(User user) throws ValidateUserException {
+        validateInfoToUser(user);
+        userPersistencePort.saveCustomer(user);
+    }
+
+    @Override
     public String getUserById(Long id) {
         return userPersistencePort.getUserById(id);
     }

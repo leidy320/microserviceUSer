@@ -1,13 +1,12 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.impl;
 
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.CustomerRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.UserRequestDto;
-import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IUserHandler;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.mapper.IUserRequestMapper;
 import com.pragma.powerup.usermicroservice.domain.api.IUserServicePort;
 import com.pragma.powerup.usermicroservice.domain.exceptions.ValidateUserException;
-import com.pragma.powerup.usermicroservice.domain.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +24,11 @@ public class UserHandlerImpl implements IUserHandler {
     @Override
     public void saveEmploye(EmployeRequestDto employeRequestDto) throws ValidateUserException {
         userServicePort.saveEmploye(userRequestMapper.toEmploye(employeRequestDto));
+    }
+
+    @Override
+    public void saveCustomer(CustomerRequestDto customerRequestDto) throws ValidateUserException {
+        userServicePort.saveCustomer(userRequestMapper.toCustomer(customerRequestDto));
     }
 
     @Override

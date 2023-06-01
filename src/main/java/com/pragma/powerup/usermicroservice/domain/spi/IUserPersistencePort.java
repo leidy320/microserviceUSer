@@ -6,6 +6,6 @@ import com.pragma.powerup.usermicroservice.domain.model.User;
 public interface IUserPersistencePort {
     void saveOwner(User user);
     void saveEmploye(User user);
-
+    void saveCustomer(User user);
     String getUserById(Long id);
 }
