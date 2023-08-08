@@ -14,6 +14,8 @@ import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 public class UserMysqlAdapter implements IUserPersistencePort {
     private final IUserRepository userRepository;
@@ -73,13 +75,26 @@ public class UserMysqlAdapter implements IUserPersistencePort {
 
     @Override
     public String getUserById(Long id) {
-        UserEntity userEntity =  userRepository.findById(id).get();
+        UserEntity userEntity = new UserEntity();
+        Optional<UserEntity> value = this.userRepository.findById(id);
+
+        if (value.isPresent()) {
+          userEntity = value.get();
+        }
+
         return userEntity.getRole().getName();
+
     }
 
     @Override
     public String getPhoneById(Long id) {
-        UserEntity userEntity =  userRepository.findById(id).get();
-        return userEntity.getPhone();
+        UserEntity userEntity = new UserEntity();
+        Optional<UserEntity> value = this.userRepository.findById(id);
+
+        if (value.isPresent()) {
+            userEntity = value.get();
+        }
+
+        return userEntity.getRole().getName();
     }
 }

@@ -4,7 +4,7 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.User
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.domain.model.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;

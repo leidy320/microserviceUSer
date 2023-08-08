@@ -29,8 +29,8 @@ public class PrincipalUser implements UserDetails {
     }
 
     public static PrincipalUser build(UserEntity usuario, List<RoleEntity> roles) {
-        List<GrantedAuthority> authorities = roles.stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getName())).collect(Collectors.toList());
+        List<SimpleGrantedAuthority> authorities = roles.stream()
+                .map(rol -> new SimpleGrantedAuthority(rol.getName())).toList();
         return new PrincipalUser(usuario.getId(), usuario.getName(), usuario.getDniNumber(), usuario.getMail(),
                 usuario.getPassword(), authorities);
     }

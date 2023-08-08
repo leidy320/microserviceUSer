@@ -40,8 +40,7 @@ public class ControllerAdvisor {
     public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException ex) {
         List<String> errorMessages = new ArrayList<>();
         for (ObjectError error : ex.getBindingResult().getAllErrors()) {
-            if (error instanceof FieldError) {
-                FieldError fieldError = (FieldError) error;
+            if (error instanceof FieldError fieldError) {
                 errorMessages.add(fieldError.getField() + ": " + fieldError.getDefaultMessage());
             } else {
                 errorMessages.add(error.getDefaultMessage());

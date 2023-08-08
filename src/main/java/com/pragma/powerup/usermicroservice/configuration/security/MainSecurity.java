@@ -23,7 +23,7 @@ public class MainSecurity {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
+
     JwtEntryPoint jwtEntryPoint;
 
     @Bean

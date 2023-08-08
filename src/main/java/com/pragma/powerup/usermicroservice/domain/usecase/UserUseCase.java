@@ -1,19 +1,21 @@
 package com.pragma.powerup.usermicroservice.domain.usecase;
 
-import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.domain.api.IUserServicePort;
 import com.pragma.powerup.usermicroservice.domain.exceptions.ValidateUserException;
 import com.pragma.powerup.usermicroservice.domain.model.User;
 import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class UserUseCase implements IUserServicePort {
+    public static final String CHARACTER = String.valueOf(Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"));
     private final int MAX_AGE = 18;
-    private final int MAX_CHARACTER = 13;
+    private final int MAXI_CHARACTER = 13;
     private final IUserPersistencePort userPersistencePort;
 
     public UserUseCase(IUserPersistencePort personPersistencePort) {
+
         this.userPersistencePort = personPersistencePort;
     }
 
@@ -36,6 +38,7 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public String getUserById(Long id) {
+
         return userPersistencePort.getUserById(id);
     }
 
@@ -64,7 +67,7 @@ public class UserUseCase implements IUserServicePort {
     }
 
     protected void validateMail(String mail) throws ValidateUserException {
-        if(!mail.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+        if(!mail.matches(CHARACTER)) {
             throw new ValidateUserException("No es un email el valor ingresado");
         }
     }
@@ -77,7 +80,7 @@ public class UserUseCase implements IUserServicePort {
 
     protected void validatePhone(String phone) throws ValidateUserException {
 
-        if(phone.length() >= MAX_CHARACTER || phone.matches(".*[a-zA-Z]+.*")) {
+        if(phone.length() >= MAXI_CHARACTER || phone.matches(".*[a-zA-Z]+.*")) {
             throw new ValidateUserException("El numero de telefono no debe superar los 13 caracteres, ni debe contener letras");
         }
     }
