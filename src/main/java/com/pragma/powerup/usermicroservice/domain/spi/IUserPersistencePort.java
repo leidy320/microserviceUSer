@@ -8,4 +8,5 @@ public interface IUserPersistencePort {
     void saveEmploye(User user);
     void saveCustomer(User user);
     String getUserById(Long id);
+    String getPhoneById(Long id);
 }

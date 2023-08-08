@@ -39,6 +39,14 @@ public class UserUseCase implements IUserServicePort {
         return userPersistencePort.getUserById(id);
     }
 
+    @Override
+    public String getPhoneById(Long id) {
+        return userPersistencePort.getPhoneById(id);
+
+    }
+
+
+
     private void validateInfoToUser(User user) throws ValidateUserException {
         validatePhone(user.getPhone());
         validateDni(user.getDniNumber());

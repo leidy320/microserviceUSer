@@ -10,5 +10,6 @@ public interface IUserHandler {
     void saveEmploye(EmployeRequestDto employeRequestDto) throws ValidateUserException;
     void saveCustomer(CustomerRequestDto customerRequestDto) throws ValidateUserException;
     String getUserById(Long id);
+    String getPhoneById(Long id);
 
 }

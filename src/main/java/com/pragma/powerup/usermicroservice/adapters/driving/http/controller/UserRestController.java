@@ -56,4 +56,8 @@ public class UserRestController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.USER_CREATED_MESSAGE));
     }
+    @GetMapping("/getPhone/{id}")
+    public ResponseEntity<String> getNumber(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(userHandler.getPhoneById(id));
+    }
 }

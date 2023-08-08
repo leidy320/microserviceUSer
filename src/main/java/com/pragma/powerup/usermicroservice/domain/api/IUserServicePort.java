@@ -10,4 +10,5 @@ public interface IUserServicePort {
 
     void saveCustomer(User user) throws ValidateUserException;
     String getUserById(Long id);
+    String getPhoneById(Long id);
 }

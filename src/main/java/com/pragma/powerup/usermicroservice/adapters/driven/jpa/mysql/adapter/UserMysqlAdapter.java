@@ -76,4 +76,10 @@ public class UserMysqlAdapter implements IUserPersistencePort {
         UserEntity userEntity =  userRepository.findById(id).get();
         return userEntity.getRole().getName();
     }
+
+    @Override
+    public String getPhoneById(Long id) {
+        UserEntity userEntity =  userRepository.findById(id).get();
+        return userEntity.getPhone();
+    }
 }

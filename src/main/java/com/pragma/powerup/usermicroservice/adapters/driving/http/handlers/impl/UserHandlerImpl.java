@@ -35,4 +35,10 @@ public class UserHandlerImpl implements IUserHandler {
     public String getUserById(Long id) {
         return userServicePort.getUserById(id);
     }
+    @Override
+    public String getPhoneById(Long id) {
+        return userServicePort.getPhoneById(id);
+    }
 }
+
+
